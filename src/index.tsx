@@ -11,4 +11,5 @@ root.render(
   </React.StrictMode>
 );
 
+// npx create-react-app . --template typescript
 // npm i --save-exact esbuild-wasm@0.8.27
