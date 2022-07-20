@@ -21,6 +21,7 @@ export default function CodeArea() {
     if (!ref.current) {
       return;
     }
+    // ESbuild initialization
     const result = await ref.current.transform(input, {
       loader: 'jsx',
       target: 'es2015',
