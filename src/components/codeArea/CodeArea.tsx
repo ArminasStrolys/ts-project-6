@@ -1,6 +1,7 @@
 import * as esbuild from 'esbuild-wasm';
 import { useEffect, useRef } from 'react';
 import { useState } from 'react';
+import { unpkgPathPlugin } from '../../plugins/unpk-path-plugins';
 
 export default function CodeArea() {
   const [input, setInput] = useState('');
@@ -21,11 +22,22 @@ export default function CodeArea() {
     if (!ref.current) {
       return;
     }
-    // ESbuild initialization
-    const result = await ref.current.transform(input, {
-      loader: 'jsx',
-      target: 'es2015',
+    // ESbuild initialization----------------------
+    // const result = await ref.current.transform(input, {
+    //   loader: 'jsx',
+    //   target: 'es2015',
+    // });
+    // setCode(result.code);
+    //-----------------------------------------------
+
+    const result = await ref.current.build({
+      // or CodeArea.tsx?
+      entryPoints: ['index.js'],
+      bundle: true,
+      write: false,
+      plugins: [unpkgPathPlugin()],
     });
+    console.log(result);
     setCode(result.code);
   };
 
