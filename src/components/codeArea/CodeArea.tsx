@@ -37,8 +37,8 @@ export default function CodeArea() {
       write: false,
       plugins: [unpkgPathPlugin()],
     });
-    console.log(result);
-    setCode(result.code);
+
+    setCode(result.outputFiles[0].text);
   };
 
   return (
